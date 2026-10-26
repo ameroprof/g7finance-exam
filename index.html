@@ -231,7 +231,7 @@
 
         window.fetchRecordsFromFirebase = async function() {
             try {
-                const q = query(collection(db, "financial_exam_scores"), orderBy("timestamp", "desc"));
+                const q = query(collection(db, "g7finance-exam"), orderBy("timestamp", "desc"));
                 const querySnapshot = await getDocs(q);
                 let records = [];
                 querySnapshot.forEach((doc) => {
