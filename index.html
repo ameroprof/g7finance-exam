@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإختبار الشهري الإلكتروني - الثقافة المالية (الصف السابع)</title>
+    <!-- SheetJS for Excel Export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(157, 78, 221, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); }
+        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #070913 0%, #120e2e 50%, #051329 100%); color: #f8fafc; margin: 0; padding: 15px; direction: rtl; min-height: 100vh; }
+        .container { max-width: 920px; margin: 0 auto; animation: fadeIn 0.5s ease-out; }
+        .card { background: rgba(18, 24, 43, 0.92); border: 1.5px solid rgba(0, 242, 254, 0.3); border-radius: 24px; padding: 25px; margin-bottom: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); backdrop-filter: blur(15px); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #00f2fe; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .badge { background: linear-gradient(90deg, #00f2fe, #9d4edd); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .btn { background: linear-gradient(90deg, #00f2fe, #7b2cbf); color: #fff; border: none; padding: 14px 28px; border-radius: 14px; font-weight: bold; cursor: pointer; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 18px rgba(0, 242, 254, 0.4); text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(157, 78, 221, 0.7); }
+        .btn-secondary { background: #242b3d; color: #cbd5e1; border: 1px solid #3b4760; }
+        .btn-success { background: linear-gradient(90deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.5); }
+        .btn-danger { background: #ef4444; color: #fff; }
+        .form-group { margin-bottom: 18px; text-align: right; }
+        label { display: block; font-size: 15px; font-weight: bold; margin-bottom: 8px; color: #00f2fe; }
+        input[type="text"], select, textarea { width: 100%; padding: 15px; border-radius: 14px; border: 2px solid #3b4760; background-color: #0b1120; color: #fff; font-size: 16px; transition: 0.3s; }
+        input[type="text"]:focus, select:focus, textarea:focus { border-color: #00f2fe; outline: none; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
+        .question-card { background: rgba(11, 17, 32, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 22px; margin-bottom: 22px; transition: 0.3s; }
+        .question-card:hover { border-color: rgba(0, 242, 254, 0.4); }
+        .question-header { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00f2fe; margin-bottom: 12px; }
+        .option-label { display: flex; align-items: center; padding: 14px; margin-top: 10px; background-color: rgba(26, 35, 57, 0.7); border: 2px solid #2d374e; border-radius: 12px; cursor: pointer; font-size: 15px; transition: all 0.2s ease; }
+        .option-label:hover { background-color: rgba(0, 242, 254, 0.15); border-color: #00f2fe; transform: translateX(-4px); }
+        .option-label input { margin-left: 12px; accent-color: #00f2fe; transform: scale(1.2); }
+        .hidden { display: none !important; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: right; font-size: 14px; }
+        th, td { padding: 14px; border-bottom: 1px solid #2d374e; }
+        th { background-color: #0b1120; color: #00f2fe; }
+        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-box { background-color: rgba(11, 17, 32, 0.9); border: 1px solid #2d374e; padding: 18px; border-radius: 16px; text-align: center; }
+        .stat-val { font-size: 30px; font-weight: bold; margin-top: 5px; color: #00f2fe; }
+        .model-badge { display: inline-block; padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; background: #242b3d; color: #fbbf24; border: 1px solid #fbbf24; }
+        .timer-box { background: rgba(239, 68, 68, 0.2); border: 2px solid #ef4444; color: #f87171; padding: 10px 20px; border-radius: 14px; font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px; animation: neonPulse 2s infinite; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الشريط العلوي -->
+        <div class="card header">
+            <div>
+                <span class="badge">وكالة الغوث الدولية (UNRWA) - مدرسة ذكور وادي السير الإعدادية</span>
+                <h2 style="margin: 8px 0 0 0; font-size: 22px; color: #fff;">📊 الإختبار الشهري الإلكتروني - الثقافة المالية (30 علامة)</h2>
+                <span style="font-size: 13px; color: #94a3b8;">الصف السابع الأساسي | إعداد المعلم: عامر كراجه</span>
+            </div>
+            <div>
+                <button onclick="switchView('student')" id="btn-tab-student" class="btn" style="padding: 10px 18px; font-size: 14px;">شاشة الطالب</button>
+                <button onclick="promptTeacherLogin()" id="btn-tab-teacher" class="btn btn-secondary" style="padding: 10px 18px; font-size: 14px;">لوحة المعلم 🔒</button>
+            </div>
+        </div>
+
+        <!-- شاشة الطالب -->
+        <div id="view-student">
+            <!-- كرت التسجيل واختيار النموذج -->
+            <div id="student-reg-card" class="card" style="text-align: center; max-width: 540px; margin: 0 auto;">
+                <div style="font-size: 55px; margin-bottom: 10px;">💰📈📝</div>
+                <h3 style="color: #00f2fe; margin-top: 0; font-size: 24px;">أهلاً بك يا بطل الثقافة المالية!</h3>
+                <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 22px; line-height: 1.6;">⚠️ لديك 20 دقيقة لإنجاز الإختبار (من 30 علامة). مسموح بمحاولة واحدة فقط!</p>
+
+                <form onsubmit="startExam(event)">
+                    <div class="form-group">
+                        <label>اسم الطالب الرباعي:</label>
+                        <input type="text" id="input-student-name" required placeholder="مثال: محمد أحمد علي حسن...">
+                    </div>
+                    <div class="form-group">
+                        <label>الشعبة الدراسية:</label>
+                        <select id="select-student-section" required>
+                            <option value="">اختر الشعبة...</option>
+                            <option value="السابع (1)">السابع (1)</option>
+                            <option value="السابع (2)">السابع (2)</option>
+                            <option value="السابع (3)">السابع (3)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>نموذج الإختبار المحدد:</label>
+                        <select id="select-exam-model" required style="border-color: #00f2fe;">
+                            <option value="">اختر النموذج...</option>
+                            <option value="A">النموذج (A)</option>
+                            <option value="B">النموذج (B)</option>
+                            <option value="C">النموذج (C)</option>
+                            <option value="D">النموذج (D)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">بدء الإختبار الآن ⚡</button>
+                </form>
+            </div>
+
+            <!-- رسالة منع المحاولة الثانية -->
+            <div id="student-blocked-card" class="card hidden" style="text-align: center; max-width: 520px; margin: 0 auto;">
+                <div style="font-size: 60px;">🛡️</div>
+                <h3 style="color: #ef4444; margin-bottom: 10px; font-size: 22px;">عذراً، لقد أديت الإختبار مسبقاً!</h3>
+                <p style="font-size: 14px; color: #cbd5e1;">مسموح لك بمحاولة واحدة فقط من هذا الجهاز وتم حفظ نتيجتك بنجاح.</p>
+                <div style="background-color: #0b1120; border: 1px solid #2d374e; padding: 18px; border-radius: 16px; margin: 20px 0; text-align: right;">
+                    <div style="font-size: 14px; color: #94a3b8;" id="blocked-info-name"></div>
+                    <div style="font-size: 18px; font-weight: bold; color: #fbbf24; margin-top: 8px;" id="blocked-info-score"></div>
+                </div>
+            </div>
+
+            <!-- منطقة الأسئلة والمؤقت -->
+            <div id="student-exam-area" class="card hidden">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2d374e; padding-bottom: 14px; margin-bottom: 22px; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span id="display-student-info" style="font-size: 15px; font-weight: bold; color: #00f2fe;"></span>
+                        <span id="display-model-info" class="model-badge" style="margin-right: 10px;"></span>
+                    </div>
+                    <div class="timer-box">
+                        <span>⏳ الوقت المتبقي:</span>
+                        <span id="timer-countdown" style="font-family: monospace; font-size: 19px;">20:00</span>
+                    </div>
+                </div>
+
+                <div id="questions-container"></div>
+                <button type="button" onclick="submitExamDirect()" class="btn btn-success" style="width: 100%; padding: 18px; font-size: 18px; margin-top: 25px;">تسليم الإختبار النهائي 🏁</button>
+            </div>
+
+            <!-- كرت النتيجة -->
+            <div id="student-result-card" class="card hidden" style="text-align: center; max-width: 500px; margin: 0 auto;">
+                <div style="font-size: 60px;">🏆</div>
+                <h3 style="color: #00f2fe; margin-bottom: 8px; font-size: 24px;">مبارك! تم تسليم الإختبار بنجاح</h3>
+                <p id="result-student-name" style="font-size: 16px; font-weight: bold; color: #cbd5e1;"></p>
+                <div style="background-color: #0b1120; border: 2px solid #00f2fe; padding: 25px; border-radius: 20px; margin: 20px 0;">
+                    <span style="font-size: 14px; color: #94a3b8; display: block;">العلامة النهائية في الإختبار</span>
+                    <span id="result-score-display" style="font-size: 45px; font-weight: bold; color: #fbbf24;">0 / 30</span>
+                </div>
+                <p id="result-feedback-msg" style="font-size: 16px; font-weight: bold; line-height: 1.5;"></p>
+                <button onclick="location.reload()" class="btn btn-secondary" style="margin-top: 18px;">إنهاء / إغلاق 🔄</button>
+            </div>
+        </div>
+
+        <!-- شاشة المعلم -->
+        <div id="view-teacher" class="card hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2d374e; padding-bottom: 15px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h3 style="margin: 0; color: #fbbf24; font-size: 20px;">📊 لوحة المعلم - سجل علامات الإختبارات السحابية</h3>
+                    <span style="font-size: 13px; color: #94a3b8;">تصميم وإعداد المعلم: عامر كراجه</span>
+                </div>
+                <div>
+                    <button onclick="exportScoresExcel()" class="btn btn-success" style="font-size: 13px; padding: 10px 18px;">تصدير إلى Excel 📄</button>
+                    <button onclick="loadTeacherDashboard()" class="btn btn-secondary" style="font-size: 13px; padding: 10px 18px;">تحديث النتائج 🔄</button>
+                    <button onclick="clearLocalStorageRecords()" class="btn btn-danger" style="font-size: 13px; padding: 10px 18px; margin-right: 5px;">مسح الحظر المحلي 🗑️</button>
+                </div>
+            </div>
+
+            <div class="grid-stats">
+                <div class="stat-box">
+                    <span style="font-size: 13px; color: #94a3b8;">إجمالي المتقدمين</span>
+                    <div id="stat-total-students" class="stat-val">0</div>
+                </div>
+                <div class="stat-box">
+                    <span style="font-size: 13px; color: #94a3b8;">متوسط العلامات</span>
+                    <div id="stat-avg-score" class="stat-val" style="color: #fbbf24;">0 / 30</div>
+                </div>
+                <div class="stat-box">
+                    <span style="font-size: 13px; color: #94a3b8;">نسبة النجاح (≥ 15)</span>
+                    <div id="stat-pass-rate" class="stat-val" style="color: #34d399;">0%</div>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>اسم الطالب</th>
+                            <th>الشعبة</th>
+                            <th>النموذج</th>
+                            <th>العلامة (من 30)</th>
+                            <th>وقت التسليم</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacher-scores-tbody">
+                        <tr><td colspan="6" style="text-align: center; color: #00f2fe;">جاري جلب النتائج الحية من سحابة Firebase...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- كود ربط Firebase السحابي -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+
+        // استبدل هذه الإعدادات بمعلومات مشروعك الخاص في Firebase Console
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmBqblt9btr7wJafY5Mh6mY5h2u9YE7o8",
+            authDomain: "g7-exam.firebaseapp.com",
+            projectId: "g7-exam",
+            storageBucket: "g7-exam.firebasestorage.app",
+            messagingSenderId: "1036845348348",
+            appId: "1:1036845348348:web:a60d53b2eb09534b3b2e79"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.saveRecordToFirebase = async function(record) {
+            try {
+                await addDoc(collection(db, "financial_exam_scores"), {
+                    ...record,
+                    timestamp: new Date()
+                });
+            } catch (error) {
+                console.error("خطأ أثناء الحفظ في السحابة:", error);
+                const offlineRecords = JSON.parse(localStorage.getItem('offline_backup_financial') || '[]');
+                offlineRecords.push(record);
+                localStorage.setItem('offline_backup_financial', JSON.stringify(offlineRecords));
+            }
+        };
+
+        window.fetchRecordsFromFirebase = async function() {
+            try {
+                const q = query(collection(db, "financial_exam_scores"), orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
+                let records = [];
+                querySnapshot.forEach((doc) => {
+                    records.push(doc.data());
+                });
+                const offlineRecords = JSON.parse(localStorage.getItem('offline_backup_financial') || '[]');
+                return [...offlineRecords, ...records];
+            } catch (error) {
+                console.error("خطأ في جلب البيانات:", error);
+                return JSON.parse(localStorage.getItem('offline_backup_financial') || '[]');
+            }
+        };
+    </script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedAttempt = localStorage.getItem('financial_exam_submitted_v1');
+            if (savedAttempt) {
+                const data = JSON.parse(savedAttempt);
+                document.getElementById('student-reg-card').classList.add('hidden');
+                document.getElementById('student-blocked-card').classList.remove('hidden');
+                document.getElementById('blocked-info-name').innerText = `اسم الطالب: ${data.name} (${data.section})`;
+                document.getElementById('blocked-info-score').innerText = `النتيجة المسجلة: ${data.score} / 30`;
+            }
+        });
+
+        // بنك أسئلة الإختبار الشهري للنماذج الأربعة مع عشوائية الخيارات الصحيحة
+        const examModels = {
+            "A": {
+                q1: [
+                    { id: 1, marks: 1, text: "ما المقصود بالمقايضة؟", options: ["ادخار المال للمستقبل", "مبادلة سلعة بسلعة أو خدمة بخدمة دون استخدام المال", "شراء الأسهم", "إيداع المال في البنك"], correct: 1 },
+                    { id: 2, marks: 1, text: "أي مما يلي يُعد مثالًا على النقود الورقية؟", options: ["الدينار الأردني الورقي", "السيارة", "براءة الاختراع", "ساعة اليد"], correct: 0 },
+                    { id: 3, marks: 1, text: "أي استخدام للمال يهدف إلى تحقيق فائدة مستقبلية؟", options: ["الشراء", "التبرع", "الاستثمار", "الإنفاق العشوائي"], correct: 2 },
+                    { id: 4, marks: 1, text: "أي مما يلي يُعد مثالًا على المال الإلكتروني؟", options: ["المقايضة", "العملات المعدنية فقط", "السيارة", "البطاقات والمحافظ الإلكترونية"], correct: 3 },
+                    { id: 5, marks: 1, text: "ما إحدى فوائد المال للفرد؟", options: ["زيادة صعوبة شراء الاحتياجات", "المساعدة على تلبية الاحتياجات الأساسية", "إلغاء الحاجة إلى التخطيط", "منع الادخار"], correct: 1 },
+                    { id: 6, marks: 1, text: "أي مما يلي يُعد من وظائف المال؟", options: ["وسيلة للزينة", "وسيلة للنقل", "مخزن للقيمة", "وسيلة للترفيه فقط"], correct: 2 },
+                    { id: 7, marks: 1, text: "أي عبارة صحيحة وفق التلخيص؟", options: ["كل مال نقود", "النقود لا تُعد مالًا", "المال والنقود لهما المعنى نفسه دائمًا", "كل نقود مال، وليس كل مال نقودًا"], correct: 3 },
+                    { id: 8, marks: 1, text: "أي عامل يؤثر في نظرة الإنسان إلى المال؟", options: ["التربية والبيئة الاجتماعية", "لون النقود فقط", "حجم المحفظة فقط", "عدد أيام الأسبوع"], correct: 0 }
+                ],
+                q2: [
+                    { id: 9, marks: 1, text: "المال يساعد على تسهيل التبادل بدلًا من المقايضة.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 10, marks: 1, text: "جميع أشكال المال تصدر عن البنك المركزي حصريًا.", options: ["صح", "خطأ"], correct: 1 },
+                    { id: 11, marks: 1, text: "يمكن استخدام المال للادخار والاستثمار والتبرع.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 12, marks: 1, text: "تمويل المشروعات وتوفير فرص العمل من أهمية المال للمجتمع.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                q3: [
+                    { id: 13, marks: 1, text: "قطعة نقدية معدنية تصدرها الحكومة:", options: ["نقود ورقية", "نقود معدنية", "شيك", "مال إلكتروني"], correct: 1 },
+                    { id: 14, marks: 1, text: "بطاقة تُستخدم في الدفع الإلكتروني:", options: ["مال إلكتروني", "نقود معدنية", "عملات مشفرة", "شيك"], correct: 0 },
+                    { id: 15, marks: 1, text: "أمر مكتوب للبنك لدفع مبلغ للمستفيد:", options: ["نقود ورقية", "مال غير نقدي", "شيك", "مال إلكتروني"], correct: 2 },
+                    { id: 16, marks: 1, text: "سيارة يمتلكها الشخص ويمكن أن تمثل قيمة مالية:", options: ["نقود معدنية", "مال إلكتروني", "شيك", "مال غير نقدي"], correct: 3 }
+                ],
+                q4: [
+                    { id: 17, marks: 1, text: "استخدم أحمد المال لشراء كتاب من المكتبة:", options: ["مقياس للقيمة", "وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 18, marks: 1, text: "قارن سامر بين سعر حقيبتين ليعرف أيهما أغلى:", options: ["وسيلة للتبادل", "مقياس للقيمة", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 19, marks: 1, text: "احتفظت ليان بمبلغ من المال لشراء هاتف العام القادم:", options: ["مخزن للقيمة", "وسيلة للتبادل", "مقياس للقيمة", "وحدة حساب"], correct: 0 },
+                    { id: 20, marks: 1, text: "سجّل التاجر قيمة المبيعات بالدنانير في دفتر الحسابات:", options: ["وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب", "مقياس للقيمة"], correct: 2 }
+                ],
+                q5: [
+                    { id: 21, marks: 1, text: "لدى طالب 10 دنانير. كم دينارًا يخصص للاحتياجات والشراء إذا خصص 60%؟ (اكتب الرقم فقط)", options: ["4 دنانير", "6 دنانير", "5 دنانير", "10 دنانير"], correct: 1 },
+                    { id: 22, marks: 1, text: "كم دينارًا يخصص للادخار والطوارئ إذا خصص 20% من الـ 10 دنانير؟", options: ["ديناران", "4 دنانير", "دينار واحد", "3 دنانيرقة"], correct: 0 },
+                    { id: 23, marks: 1, text: "كم دينارًا يخصص للاستثمار أو دورة تعليمية إذا خصص 20% من الـ 10 دنانير؟", options: ["دينار واحد", "ديناران", "4 دنانير", "5 دنانير"], correct: 1 },
+                    { id: 24, marks: 2, text: "ما المقصود بالتخطيط المالي؟", options: ["خطة لتنظيم أوجه الإنفاق بذكاء وتوزيع الأموال على الاحتياجات والادخار", "إنفاق المال كله دون تفكير", "الاستغناء عن المال نهائياً", "شراء سلع كمالية"], correct: 0 }
+                ],
+                q6: [
+                    { id: 25, marks: 2, text: "اذكر فائدة للمال للفرد:", options: ["تلبية الاحتياجات الأساسية وتحقيق الطموحات", "زيادة الديون والتوتر", "إلغاء الادخار", "عدم الشراء نهائياً"], correct: 0 },
+                    { id: 26, marks: 2, text: "اذكر فائدة للمال للمجتمع:", options: ["تمويل المشروعات وتوفير فرص العمل ودعم الاقتصاد", "إيقاف الابتكار", "زيادة البطالة", "منع التجارة"], correct: 0 },
+                    { id: 27, marks: 1, text: "اذكر عاملًا يؤثر في نظرة الإنسان إلى المال:", options: ["التربية والبيئة الاجتماعية والمعرفة المالية", "لون الحقيبة فقط", "شكل الطاولة", "عدد أيام الأسبوع"], correct: 0 }
+                ]
+            },
+            "B": {
+                q1: [
+                    { id: 1, marks: 1, text: "أي مما يلي يُعد مثالًا على النقود المعدنية؟", options: ["المحفظة الإلكترونية", "السيارة", "قطعة نقدية معدنية تصدرها الحكومة", "براءة الاختراع"], correct: 2 },
+                    { id: 2, marks: 1, text: "ما الغرض من الادخار؟", options: ["الاستعداد للمستقبل والطوارئ", "زيادة الإنفاق العشوائي", "إلغاء التخطيط المالي", "استبدال المال بالمقايضة دائمًا"], correct: 0 },
+                    { id: 3, marks: 1, text: "أي مما يلي مثال على الاستثمار؟", options: ["شراء الطعام للاستهلاك اليومي", "التبرع لجمعية", "شراء لعبة", "شراء أسهم بهدف تحقيق فائدة مستقبلية"], correct: 3 },
+                    { id: 4, marks: 1, text: "ما المقصود بالشيك؟", options: ["عملة معدنية", "أمر مكتوب للبنك بدفع مبلغ للمستفيد", "نوع من المقايضة", "قطعة نقدية ورقية"], correct: 1 },
+                    { id: 5, marks: 1, text: "أي مما يلي يُعد أهمية للمال على مستوى المجتمع؟", options: ["تقليل فرص العمل", "إيقاف الابتكار", "تمويل المشروعات وتوفير فرص العمل", "منع تطور الخدمات"], correct: 2 },
+                    { id: 6, marks: 1, text: "وفق التلخيص، أي مما يلي مثال على المال وليس من النقود؟", options: ["الدينار الأردني الورقي", "نصف الدينار المعدني", "قطعة نقدية معدنية", "براءة الاختراع أو سيارة"], correct: 3 },
+                    { id: 7, marks: 1, text: "ما إحدى وظائف المال؟", options: ["وحدة حساب", "وسيلة للزينة", "وسيلة للنقل", "وسيلة للترفيه فقط"], correct: 0 },
+                    { id: 8, marks: 1, text: "أي مما يلي قد يؤثر في نظرة الإنسان إلى المال؟", options: ["شكل الطاولة", "التعليم والمعرفة المالية", "لون الحقيبة", "عدد نوافذ المنزل فقط"], correct: 1 }
+                ],
+                q2: [
+                    { id: 9, marks: 1, text: "المال وسيلة يمكن استخدامها لشراء السلع والخدمات وسداد الديون.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 10, marks: 1, text: "النقود الورقية والعملات المعدنية من الأشكال التي تصدرها الحكومات.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 11, marks: 1, text: "الاستثمار يعني إنفاق المال دون توقع أي فائدة مستقبلية.", options: ["صح", "خطأ"], correct: 1 },
+                    { id: 12, marks: 1, text: "يمكن للمال أن يساعد في دعم الرعاية الصحية والتعليم في المجتمع.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                q3: [
+                    { id: 13, marks: 1, text: "الدينار الأردني على شكل أوراق نقدية:", options: ["نقود معدنية", "نقود ورقية", "شيك", "مال إلكتروني"], correct: 1 },
+                    { id: 14, marks: 1, text: "محفظة إلكترونية تُستخدم للدفع:", options: ["مال إلكتروني", "نقود ورقية", "عملات مشفرة", "شيك"], correct: 0 },
+                    { id: 15, marks: 1, text: "عملة تعتمد على تقنية البلوكتشين مثل البيتكوين:", options: ["نقود معدنية", "عملات مشفرة", "شيك", "مال إلكتروني"], correct: 1 },
+                    { id: 16, marks: 1, text: "ساعة يد ثمينة يمتلكها شخص:", options: ["نقود ورقية", "مال إلكتروني", "شيك", "مال غير نقدي"], correct: 3 }
+                ],
+                q4: [
+                    { id: 17, marks: 1, text: "اشترت مريم دفترًا باستخدام المال:", options: ["مقياس للقيمة", "وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 18, marks: 1, text: "عرف المشتري أن سعر الكتاب أقل من سعر الحقيبة:", options: ["وسيلة للتبادل", "مقياس للقيمة", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 19, marks: 1, text: "احتفظ خالد بجزء من ماله ليستخدمه في وقت لاحق:", options: ["مخزن للقيمة", "وسيلة للتبادل", "مقياس للقيمة", "وحدة حساب"], correct: 0 },
+                    { id: 20, marks: 1, text: "دوّن صاحب متجر إيراداته ومصروفاته بالدنانير:", options: ["وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب", "مقياس للقيمة"], correct: 2 }
+                ],
+                q5: [
+                    { id: 21, marks: 1, text: "كم دينارًا تخصص للاحتياجات والشراء بنسبة 60% من 10 دنانير؟", options: ["4 دنانير", "6 دنانير", "5 دنانير", "10 دنانير"], correct: 1 },
+                    { id: 22, marks: 1, text: "كم دينارًا تخصص للادخار والطوارئ بنسبة 20% من 10 دنانير؟", options: ["ديناران", "4 دنانير", "دينار واحد", "3 دنانير"], correct: 0 },
+                    { id: 23, marks: 1, text: "كم دينارًا تخصص للاستثمار أو دورة تعليمية بنسبة 20% من 10 دنانير؟", options: ["دينار واحد", "ديناران", "4 دنانير", "5 دنانير"], correct: 1 },
+                    { id: 24, marks: 2, text: "وضّح المقصود بالتخطيط المالي، واذكر فائدة واحدة له.", options: ["خطة لتنظيم الإنفاق بذكاء، وتساعد على توزيع المال وتلبية الاحتياجات", "إنفاق عشوائي للمال", "الاستغناء عن الادخار", "تخزين المال دون هدف"], correct: 0 }
+                ],
+                q6: [
+                    { id: 25, marks: 2, text: "اذكر فائدة للمال للفرد:", options: ["تلبية الاحتياجات الأساسية وتحقيق الأمان المالي", "زيادة الديون", "منع الشراء", "إلغاء التخطيط"], correct: 0 },
+                    { id: 26, marks: 2, text: "اذكر فائدة للمال للمجتمع:", options: ["تمويل المشروعات وتوفير فرص العمل ودعم الاقتصاد", "تعطيل التجارة", "نشر الفقر", "إيقاف التعليم"], correct: 0 },
+                    { id: 27, marks: 1, text: "اذكر عاملًا يؤثر في نظرة الإنسان إلى المال:", options: ["التعليم والمعرفة المالية والبيئة", "شكل الطاولة", "لون الحقيبة", "عدد النوافذ"], correct: 0 }
+                ]
+            },
+            "C": {
+                q1: [
+                    { id: 1, marks: 1, text: "ما الوظيفة التي يحققها المال عندما يُستخدم لشراء سلعة؟", options: ["مخزن للقيمة", "وسيلة للزينة", "وسيلة للتبادل", "وسيلة للترفيه فقط"], correct: 2 },
+                    { id: 2, marks: 1, text: "أي مما يلي يُعد مثالًا على المال الإلكتروني؟", options: ["البطاقة أو المحفظة الإلكترونية", "السيارة", "المقايضة", "براءة الاختراع"], correct: 0 },
+                    { id: 3, marks: 1, text: "ما المقصود بالمال وفق التلخيص؟", options: ["النقود الورقية فقط", "العملات المعدنية فقط", "ما يصدر عن البنك المركزي فقط", "ما يُستخدم وسيلة للتبادل أو مخزنًا للقيمة"], correct: 3 },
+                    { id: 4, marks: 1, text: "أي استخدام للمال يرتبط بمساعدة الآخرين؟", options: ["الادخار", "التبرع", "الاستثمار", "مقارنة الأسعار"], correct: 1 },
+                    { id: 5, marks: 1, text: "أي مما يلي يُعد من أهمية المال للفرد؟", options: ["إلغاء الاحتياجات الأساسية", "منع تحقيق الأهداف", "المساعدة على تحقيق الطموحات وتلبية الاحتياجات", "زيادة التوتر دائمًا"], correct: 2 },
+                    { id: 6, marks: 1, text: "أي مما يلي مثال على العملات المشفرة؟", options: ["الشيك", "الدينار الورقي", "العملة المعدنية", "البيتكوين"], correct: 3 },
+                    { id: 7, marks: 1, text: "أي عبارة صحيحة؟", options: ["كل نقود مال، وليس كل مال نقودًا", "كل مال نقود", "النقود ليست شكلًا من أشكال المال", "السيارة نقود ورقية"], correct: 0 },
+                    { id: 8, marks: 1, text: "أي مما يلي من العوامل التي تؤثر في نظرة الإنسان إلى المال؟", options: ["لون الحذاء", "التجارب الشخصية والتربية", "عدد المقاعد في الصف", "شكل القلم فقط"], correct: 1 }
+                ],
+                q2: [
+                    { id: 9, marks: 1, text: "المقايضة هي مبادلة سلعة بسلعة أو خدمة بخدمة دون استخدام المال.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 10, marks: 1, text: "الشيك هو عملة معدنية تصدرها الحكومة.", options: ["صح", "خطأ"], correct: 1 },
+                    { id: 11, marks: 1, text: "يمكن استخدام المال لتحقيق الأمان المالي ومواجهة الطوارئ.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 12, marks: 1, text: "من وظائف المال أن يكون مقياسًا للقيمة.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                q3: [
+                    { id: 13, marks: 1, text: "قطعة نقدية معدنية:", options: ["نقود ورقية", "نقود معدنية", "شيك", "مال إلكتروني"], correct: 1 },
+                    { id: 14, marks: 1, text: "أمر مكتوب للبنك بدفع مبلغ للمستفيد:", options: ["شيك", "نقود معدنية", "عملات مشفرة", "مال إلكتروني"], correct: 0 },
+                    { id: 15, marks: 1, text: "البيتكوين:", options: ["نقود ورقية", "شيك", "عملات مشفرة", "مال إلكتروني"], correct: 2 },
+                    { id: 16, marks: 1, text: "سيارة يمتلكها شخص ويمكن أن تمثل قيمة مالية:", options: ["نقود معدنية", "مال إلكتروني", "شيك", "مال غير نقدي"], correct: 3 }
+                ],
+                q4: [
+                    { id: 17, marks: 1, text: "دفع يوسف المال لشراء وجبة:", options: ["مقياس للقيمة", "وسيلة للتبادل", "وحدة حساب", "مخزن للقيمة"], correct: 1 },
+                    { id: 18, marks: 1, text: "قارن المشتري بين أسعار ثلاثة هواتف:", options: ["وسيلة للتبادل", "مقياس للقيمة", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 19, marks: 1, text: "ادخرت هدى مبلغًا لتشتري به شيئًا في العام القادم:", options: ["مخزن للقيمة", "وسيلة للتبادل", "مقياس للقيمة", "وحدة حساب"], correct: 0 },
+                    { id: 20, marks: 1, text: "سجّل البائع قيمة البضائع المباعة بالدنانير:", options: ["وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب", "مقياس للقيمة"], correct: 2 }
+                ],
+                q5: [
+                    { id: 21, marks: 1, text: "ما المبلغ المخصص للاحتياجات والشراء بنسبة 60% من 10 دنانير؟", options: ["4 دنانير", "6 دنانير", "5 دنانير", "10 دنانير"], correct: 1 },
+                    { id: 22, marks: 1, text: "ما المبلغ المخصص للادخار والطوارئ بنسبة 20% من 10 دنانير؟", options: ["ديناران", "4 دنانير", "دينار واحد", "3 دنانير"], correct: 0 },
+                    { id: 23, marks: 1, text: "ما المبلغ المخصص للاستثمار أو دورة تعليمية بنسبة 20% من 10 دنانير؟", options: ["دينار واحد", "ديناران", "4 دنانير", "5 دنانير"], correct: 1 },
+                    { id: 24, marks: 2, text: "ما المقصود بالتخطيط المالي؟ وضّح كيف يساعد الشخص.", options: ["خطة لتنظيم الإنفاق وتوزيع الأموال على الاحتياجات والادخار بذكاء", "إنفاق المال كله في أول يوم", "حفظ المال تحت البلاطة", "شراء سلع لا تهمنا"], correct: 0 }
+                ],
+                q6: [
+                    { id: 25, marks: 2, text: "اذكر فائدة للمال للفرد:", options: ["تلبية الاحتياجات الأساسية وتحقيق الأهداف", "زيادة المشاكل", "منع الادخار", "إلغاء التخطيط"], correct: 0 },
+                    { id: 26, marks: 2, text: "اذكر فائدة للمال للمجتمع:", options: ["تمويل المشروعات وتوفير فرص العمل ودعم الاقتصاد", "تعطيل البنوك", "نشر البطالة", "إيقاف التجارة"], correct: 0 },
+                    { id: 27, marks: 1, text: "اذكر عاملًا يؤثر في نظرة الإنسان إلى المال:", options: ["التجارب الشخصية والتربية البيئية", "لون القلم", "شكل الطاولة", "عدد الشبابيك"], correct: 0 }
+                ]
+            },
+            "D": {
+                q1: [
+                    { id: 1, marks: 1, text: "ما الوظيفة التي يحققها المال عندما يحتفظ به الشخص لاستخدامه مستقبلًا؟", options: ["وحدة حساب", "مخزن للقيمة", "وسيلة للزينة", "مقياس للقيمة"], correct: 1 },
+                    { id: 2, marks: 1, text: "أي مما يلي يُعد مثالًا على النقود الورقية؟", options: ["السيارة", "الساعة", "الدينار الأردني الورقي", "براءة الاختراع"], correct: 2 },
+                    { id: 3, marks: 1, text: "ما الهدف من الاستثمار؟", options: ["تحقيق فائدة مستقبلية", "إنفاق المال دون تخطيط", "الاستغناء عن جميع الاحتياجات", "منع الادخار"], correct: 0 },
+                    { id: 4, marks: 1, text: "أي مما يلي يُعد من أهمية المال للمجتمع؟", options: ["تقليل فرص العمل", "إيقاف التطور", "منع تمويل المشروعات", "دعم التعليم والرعاية الصحية"], correct: 3 },
+                    { id: 5, marks: 1, text: "ما المقصود بالمقايضة؟", options: ["شراء الأسهم", "مبادلة سلعة بسلعة أو خدمة بخدمة دون مال", "الادخار في حصالة", "الدفع ببطاقة إلكترونية"], correct: 1 },
+                    { id: 6, marks: 1, text: "أي مما يلي مثال على المال الإلكتروني؟", options: ["العملة المعدنية فقط", "براءة الاختراع", "البطاقات والمحافظ الإلكترونية", "السيارة"], correct: 2 },
+                    { id: 7, marks: 1, text: "أي عبارة صحيحة وفق التلخيص؟", options: ["النقود شكل من أشكال المال", "المال لا يشمل إلا النقود الورقية", "كل مال تصدره الحكومة", "النقود والمال لا علاقة بينهما"], correct: 0 },
+                    { id: 8, marks: 1, text: "أي مما يلي قد يؤثر في نظرة الإنسان إلى المال؟", options: ["لون النقود فقط", "عدد أيام الشهر فقط", "شكل الحقيبة", "الإعلام والتكنولوجيا والبيئة"], correct: 3 }
+                ],
+                q2: [
+                    { id: 9, marks: 1, text: "المال يسهل شراء السلع والخدمات وسداد الديون.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 10, marks: 1, text: "العملات المشفرة تعتمد على تقنية البلوكتشين وفق التلخيص.", options: ["صح", "خطأ"], correct: 0 },
+                    { id: 11, marks: 1, text: "التبرع ليس من استخدامات المال.", options: ["صح", "خطأ"], correct: 1 },
+                    { id: 12, marks: 1, text: "يمكن للمال أن يسهم في تمويل المشروعات وتحسين الوضع الاقتصادي.", options: ["صح", "خطأ"], correct: 0 }
+                ],
+                q3: [
+                    { id: 13, marks: 1, text: "الدينار الأردني على شكل أوراق نقدية:", options: ["نقود معدنية", "نقود ورقية", "شيك", "مال إلكتروني"], correct: 1 },
+                    { id: 14, marks: 1, text: "بطاقة تُستخدم لإجراء دفع إلكتروني:", options: ["مال إلكتروني", "نقود معدنية", "عملات مشفرة", "شيك"], correct: 0 },
+                    { id: 15, marks: 1, text: "عملة تعتمد على تقنية البلوكتشين مثل البيتكوين:", options: ["نقود معدنية", "عملات مشفرة", "شيك", "مال إلكتروني"], correct: 1 },
+                    { id: 16, marks: 1, text: "ساعة يد ثمينة يمتلكها شخص:", options: ["نقود ورقية", "مال إلكتروني", "شيك", "مال غير نقدي"], correct: 3 }
+                ],
+                q4: [
+                    { id: 17, marks: 1, text: "اشترى عمر قلمًا باستخدام المال:", options: ["مقياس للقيمة", "وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 18, marks: 1, text: "عرف المشتري أن سعر الحقيبة أعلى من سعر الدفتر:", options: ["وسيلة للتبادل", "مقياس للقيمة", "مخزن للقيمة", "وحدة حساب"], correct: 1 },
+                    { id: 19, marks: 1, text: "احتفظت سارة بمبلغ لشراء جهاز في المستقبل:", options: ["مخزن للقيمة", "وسيلة للتبادل", "مقياس للقيمة", "وحدة حساب"], correct: 0 },
+                    { id: 20, marks: 1, text: "سجّل التاجر قيمة مبيعاته بالدنانير:", options: ["وسيلة للتبادل", "مخزن للقيمة", "وحدة حساب", "مقياس للقيمة"], correct: 2 }
+                ],
+                q5: [
+                    { id: 21, marks: 1, text: "ما المبلغ المخصص للاحتياجات والشراء بنسبة 60% من 10 دنانير؟", options: ["4 دنانير", "6 دنانير", "5 دنانير", "10 دنانير"], correct: 1 },
+                    { id: 22, marks: 1, text: "ما المبلغ المخصص للادخار والطوارئ بنسبة 20% من 10 دنانير؟", options: ["ديناران", "4 دنانير", "دينار واحد", "3 دنانير"], correct: 0 },
+                    { id: 23, marks: 1, text: "ما المبلغ المخصص للاستثمار أو دورة تعليمية بنسبة 20% من 10 دنانير؟", options: ["دينار واحد", "ديناران", "4 دنانير", "5 دنانير"], correct: 1 },
+                    { id: 24, marks: 2, text: "وضّحي المقصود بالتخطيط المالي، واذكري فائدة واحدة له.", options: ["خطة لتنظيم الإنفاق وتوزيع الأموال على الاحتياجات والادخار بذكاء", "إنفاق الأموال دون أي حساب", "الاستغناء عن الادخار", "تخزين المال بدون هدف"], correct: 0 }
+                ],
+                q6: [
+                    { id: 25, marks: 2, text: "اذكر فائدة للمال للفرد:", options: ["تلبية الاحتياجات الأساسية وتحقيق الأمان", "زيادة الديون", "منع الادخار", "إلغاء التخطيط"], correct: 0 },
+                    { id: 26, marks: 2, text: "اذكر فائدة للمال للمجتمع:", options: ["تمويل المشروعات وتوفير فرص العمل ودعم الاقتصاد", "تعطيل التجارة", "نشر البطالة", "إيقاف التعليم"], correct: 0 },
+                    { id: 27, marks: 1, text: "اذكر عاملًا يؤثر في نظرة الإنسان إلى المال:", options: ["الإعلام والتكنولوجيا والبيئة", "لون القلم", "شكل الطاولة", "عدد الشبابيك"], correct: 0 }
+                ]
+            }
+        };
+
+        let currentStudent = { name: "", section: "", model: "A" };
+        let timerInterval = null;
+        let timeLeft = 20 * 60; // 20 دقيقة للإختبار
+
+        function renderQuestions(modelKey) {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            const modelData = examModels[modelKey];
+
+            let allQuestionsFlat = [
+                { title: "السؤال الأول: اختر الإجابة الصحيحة (8 علامات)", items: modelData.q1 },
+                { title: "السؤال الثاني: صح أو خطأ (4 علامات)", items: modelData.q2 },
+                { title: "السؤال الثالث: صنّف الأمثلة الآتية (4 علامات)", items: modelData.q3 },
+                { title: "السؤال الرابع: وظائف المال (4 علامات)", items: modelData.q4 },
+                { title: "السؤال الخامس: التخطيط المالي (5 علامات)", items: modelData.q5 },
+                { title: "السؤال السادس: أهمية المال (5 علامات)", items: modelData.q6 }
+            ];
+
+            allQuestionsFlat.forEach(section => {
+                const secDiv = document.createElement('div');
+                secDiv.innerHTML = `<h4 style="color: #fbbf24; border-bottom: 1px dashed #3b4760; padding-bottom: 6px; margin-top: 25px;">${section.title}</h4>`;
+                container.appendChild(secDiv);
+
+                section.items.forEach(q => {
+                    const card = document.createElement('div');
+                    card.className = "question-card";
+                    card.id = `q_card_${q.id}`;
+                    card.innerHTML = `
+                        <div class="question-header">
+                            <span>سؤال (${q.id})</span>
+                            <span class="badge" style="background: rgba(0, 242, 254, 0.15); color: #00f2fe; border: 1px solid #00f2fe;">${q.marks} ${q.marks > 1 ? 'علامات' : 'علامة'}</span>
+                        </div>
+                        <p style="font-size: 17px; font-weight: bold; margin: 8px 0 12px 0; line-height: 1.6; color: #fff;">${q.text}</p>
+                        <div>
+                            ${q.options.map((opt, optIdx) => `
+                                <label class="option-label">
+                                    <input type="radio" name="q_${q.id}" value="${optIdx}">
+                                    <span>${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            });
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("انتهى الوقت المحدد للإختبار (20 دقيقة)! سيتم تسليم إجاباتك تلقائياً.");
+                    submitExamDirect(true);
+                } else {
+                    timeLeft--;
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    document.getElementById('timer-countdown').innerText = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+
+        function startExam(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('input-student-name').value.trim();
+            const nameParts = fullName.split(/\s+/);
+
+            if (nameParts.length < 3) {
+                alert("الرجاء التأكد من كتابة الاسم الرباعي الصحيح (من 3 مقاطع على الأقل)!");
+                return;
+            }
+
+            const section = document.getElementById('select-student-section').value;
+            const model = document.getElementById('select-exam-model').value;
+
+            if (fullName && section && model) {
+                currentStudent = { name: fullName, section, model };
+                document.getElementById('display-student-info').innerText = `الطالب: ${fullName} | ${section}`;
+                document.getElementById('display-model-info').innerText = `النموذج (${model})`;
+                
+                document.getElementById('student-reg-card').classList.add('hidden');
+                document.getElementById('student-exam-area').classList.remove('hidden');
+                
+                renderQuestions(model);
+                startTimer();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function submitExamDirect(forceSubmit = false) {
+            const modelData = examModels[currentStudent.model];
+            let allQuestions = [...modelData.q1, ...modelData.q2, ...modelData.q3, ...modelData.q4, ...modelData.q5, ...modelData.q6];
+            
+            if (!forceSubmit) {
+                for (let q of allQuestions) {
+                    const checked = document.querySelector(`input[name="q_${q.id}"]:checked`);
+                    if (!checked) {
+                        alert(`⚠️ تنبيه: يرجى الإجابة على السؤال رقم (${q.id}) قبل تسليم الإختبار النهائي.`);
+                        const cardEl = document.getElementById(`q_card_${q.id}`);
+                        if (cardEl) cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+                }
+            }
+
+            if (timerInterval) clearInterval(timerInterval);
+
+            let totalScore = 0;
+            allQuestions.forEach(q => {
+                const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
+                if (selected && parseInt(selected.value) === q.correct) {
+                    totalScore += q.marks;
+                }
+            });
+            totalScore = Math.round(totalScore * 10) / 10;
+
+            const timeNow = new Date().toLocaleString('ar-EG');
+            const record = {
+                name: currentStudent.name,
+                section: currentStudent.section,
+                model: currentStudent.model,
+                score: totalScore,
+                time: timeNow
+            };
+
+            // قيد حظر تكرار المحاولة من نفس الجهاز
+            localStorage.setItem('financial_exam_submitted_v1', JSON.stringify(record));
+
+            // الحفظ في قاعدة بيانات Firebase السحابية
+            if (window.saveRecordToFirebase) {
+                window.saveRecordToFirebase(record);
+            }
+
+            document.getElementById('student-exam-area').classList.add('hidden');
+            document.getElementById('result-student-name').innerText = `الطالب: ${currentStudent.name} (${currentStudent.section}) - نموذج ${currentStudent.model}`;
+            document.getElementById('result-score-display').innerText = `${totalScore} / 30`;
+            
+            const msgEl = document.getElementById('result-feedback-msg');
+            if (totalScore >= 24) {
+                msgEl.innerText = "🌟 ممتاز جداً! أداء متميز ورائع في اختبار الثقافة المالية.";
+                msgEl.style.color = "#34d399";
+            } else if (totalScore >= 15) {
+                msgEl.innerText = "👍 جيد جداً! أداء طيب ومقبول، استمر في التقدم.";
+                msgEl.style.color = "#38bdf8";
+            } else {
+                msgEl.innerText = "⚠️ بحاجة لمراجعة وحدة المال وأشكاله والتخطيط المالي.";
+                msgEl.style.color = "#fbbf24";
+            }
+
+            document.getElementById('student-result-card').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function promptTeacherLogin() {
+            const password = prompt("أدخل كلمة المرور لدخول لوحة المعلم:");
+            if (password === "exam2618") {
+                switchView('teacher');
+                loadTeacherDashboard();
+            } else if (password !== null) {
+                alert("كلمة المرور غير صحيحة!");
+            }
+        }
+
+        function switchView(view) {
+            if (view === 'student') {
+                document.getElementById('view-student').classList.remove('hidden');
+                document.getElementById('view-teacher').classList.add('hidden');
+                document.getElementById('btn-tab-student').className = "btn";
+                document.getElementById('btn-tab-teacher').className = "btn btn-secondary";
+            } else {
+                document.getElementById('view-student').classList.add('hidden');
+                document.getElementById('view-teacher').classList.remove('hidden');
+                document.getElementById('btn-tab-student').className = "btn btn-secondary";
+                document.getElementById('btn-tab-teacher').className = "btn";
+            }
+        }
+
+        async function loadTeacherDashboard() {
+            const tbody = document.getElementById('teacher-scores-tbody');
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #00f2fe;">جاري جلب النتائج من السحابة...</td></tr>`;
+
+            if (!window.fetchRecordsFromFirebase) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #ef4444;">تعذر الاتصال بقاعدة البيانات.</td></tr>`;
+                return;
+            }
+
+            const cloudResults = await window.fetchRecordsFromFirebase();
+            tbody.innerHTML = '';
+
+            let totalMarks = 0;
+            let passCount = 0;
+
+            cloudResults.forEach((rec, idx) => {
+                totalMarks += rec.score;
+                if (rec.score >= 15) passCount++;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="color: #94a3b8;">${idx + 1}</td>
+                    <td style="font-weight: bold; color: #fff;">${rec.name}</td>
+                    <td>${rec.section}</td>
+                    <td><span class="model-badge">نموذج ${rec.model}</span></td>
+                    <td style="font-weight: bold; color: #fbbf24;">${rec.score} / 30</td>
+                    <td style="color: #94a3b8; font-size: 12px;">${rec.time || 'وقت سابق'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('stat-total-students').innerText = cloudResults.length;
+            document.getElementById('stat-avg-score').innerText = cloudResults.length ? `${Math.round(totalMarks / cloudResults.length * 10) / 10} / 30` : '0 / 30';
+            document.getElementById('stat-pass-rate').innerText = cloudResults.length ? `${Math.round((passCount / cloudResults.length) * 100)}%` : '0%';
+
+            if (cloudResults.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94a3b8;">لا توجد نتائج مسجلة حتى الآن.</td></tr>`;
+            }
+        }
+
+        async function exportScoresExcel() {
+            if (!window.fetchRecordsFromFirebase) return;
+            const cloudResults = await window.fetchRecordsFromFirebase();
+            
+            if (!cloudResults.length) {
+                alert("لا توجد نتائج مسجلة لتصديرها!");
+                return;
+            }
+
+            let dataToExport = cloudResults.map((r, i) => ({
+                "الرقم": i + 1,
+                "اسم الطالب": r.name,
+                "الشعبة": r.section,
+                "النموذج": `نموذج ${r.model}`,
+                "العلامة (من 30)": r.score,
+                "وقت التسليم": r.time || 'غير محدد'
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "نتائج الإختبار الشهري");
+            XLSX.writeFile(workbook, "نتائج_اختبار_الثقافة_المالية_الصف_السابع.xlsx");
+        }
+
+        function clearLocalStorageRecords() {
+            if (confirm("هل أنت متأكد من مسح قيد منع المحاولة وحذف الذاكرة المؤقتة من هذا الجهاز؟")) {
+                localStorage.removeItem('financial_exam_submitted_v1');
+                localStorage.removeItem('offline_backup_financial');
+                alert("تم مسح قيود الجهاز بنجاح.");
+                loadTeacherDashboard();
+            }
+        }
+    </script>
+</body>
+</html>
