@@ -198,12 +198,18 @@
 
         // استبدل هذه الإعدادات بمعلومات مشروعك الخاص في Firebase Console
         const firebaseConfig = {
-            apiKey: "AIzaSyBmBqblt9btr7wJafY5Mh6mY5h2u9YE7o8",
-            authDomain: "g7-exam.firebaseapp.com",
-            projectId: "g7-exam",
-            storageBucket: "g7-exam.firebasestorage.app",
-            messagingSenderId: "1036845348348",
-            appId: "1:1036845348348:web:a60d53b2eb09534b3b2e79"
+           apiKey: "AIzaSyB3PXdG2hNSBZaf_r4TU7BLcuqnHVHSABY",
+
+  authDomain: "g7finance-exam.firebaseapp.com",
+
+  projectId: "g7finance-exam",
+
+  storageBucket: "g7finance-exam.firebasestorage.app",
+
+  messagingSenderId: "166957650134",
+
+  appId: "1:166957650134:web:a6d5e3ebe43a46ce373977"
+
         };
 
         const app = initializeApp(firebaseConfig);
@@ -211,7 +217,7 @@
 
         window.saveRecordToFirebase = async function(record) {
             try {
-                await addDoc(collection(db, "financial_exam_scores"), {
+                await addDoc(collection(db, "g7finance-exam"), {
                     ...record,
                     timestamp: new Date()
                 });
